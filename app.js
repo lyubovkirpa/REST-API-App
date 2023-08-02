@@ -6,16 +6,6 @@ require("dotenv").config();
 const contactsRouter = require("./routes/api/contacts");
 
 
-// const mongoose = require("mongoose");
-// const DB_HOST = "mongodb+srv://Liubov:7Qpu4z@CtVKK5GV@cluster0.p4lxqwj.mongodb.net/db-contacts?retryWrites=true&w=majority";
-
-// mongoose.set('strictQuery', true);
-
-// mongoose.connect(DB_HOST)
-//     .then(() => console.log("Database connect success"))
-//     .catch(error => console.log(error.message))
-
-
 const app = express();
 
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
@@ -36,9 +26,4 @@ app.use((err, req, res, next) => {
 module.exports = app;
 
 
-// Liubov Kyrpa kirpa.lyubov.a@gmail.com password = fhdhiofk154
-// 7Qpu4z@CtVKK5GV
 
-// vfdjkfbhlffffh453
-
-// mongodb+srv://Liubov:<password>@cluster0.p4lxqwj.mongodb.net/

@@ -6,22 +6,24 @@ const {
   getById,
   add,
   deleteById,
-  updateById,
+  updateById,  
 } = require("../../controllers/contactsControllers");
 
 const { validateBody } = require("../../middlewares/validateBody");
-const { contactsSchemas } = require("../../schemas/contactsSchemas");
+const { isValidId } = require("../../middlewares/isValidId");
 
+const { schemas } = require("../../models/contact");
 
 
 router.get("/", getAll);
 
-router.get("/:contactId", getById);
+router.get("/:contactId", isValidId, getById);
 
-router.post("/", validateBody(contactsSchemas), add);
+router.post("/", validateBody(schemas.contactsSchemas), add);
 
-router.delete("/:contactId", deleteById);
+router.delete("/:contactId", isValidId, deleteById);
 
-router.put("/:contactId", validateBody(contactsSchemas), updateById);
+router.put("/:contactId", isValidId, validateBody(schemas.contactsSchemas), updateById);
+
 
 module.exports = router;
