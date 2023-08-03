@@ -6,7 +6,8 @@ const {
   getById,
   add,
   deleteById,
-  updateById,  
+  updateById,
+  updateFavorite,  
 } = require("../../controllers/contactsControllers");
 
 const { validateBody } = require("../../middlewares/validateBody");
@@ -25,5 +26,6 @@ router.delete("/:contactId", isValidId, deleteById);
 
 router.put("/:contactId", isValidId, validateBody(schemas.contactsSchemas), updateById);
 
+router.patch("/:contactId/favorite", isValidId, validateBody(schemas.updateFavoriteSchema), updateFavorite);
 
 module.exports = router;
