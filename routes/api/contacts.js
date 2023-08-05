@@ -12,9 +12,6 @@ const {
 
 const { validateBody, isValidId } = require("../../middlewares");
 
-// const { validateBody } = require("../../middlewares/validateBody");
-// const { isValidId } = require("../../middlewares/isValidId");
-
 const { schemas } = require("../../models/contact");
 
 
