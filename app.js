@@ -1,6 +1,9 @@
 const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
+// const multer = require("multer");
+// const path = require("path");
+
 require("dotenv").config();
 
 const authRouter = require("./routes/api/auth");
@@ -14,8 +17,22 @@ const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
+app.use(express.static("public"));
 
-app.use("/api/auth", authRouter)
+// const tempDir = path.join(__dirname, "temp");
+
+// const multerConfig = multer.diskStorage({
+//   destination: tempDir,
+//   filename: (req, file, cb) => {
+//     cb(null, file.originalname);
+//   },
+// });
+
+// const upload = multer({
+//   storage: multerConfig,
+// });
+
+app.use("/api/auth", authRouter);
 
 app.use("/api/contacts", contactsRouter);
 
@@ -24,9 +41,6 @@ app.use((req, res) => {
 });
 
 app.use((err, req, res, next) => {
-  res.status(500).json({ message: err.message, stack: err.stack })
-})
+  res.status(500).json({ message: err.message, stack: err.stack });
+});
 module.exports = app;
-
-
-
