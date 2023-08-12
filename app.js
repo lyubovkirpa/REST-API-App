@@ -1,6 +1,7 @@
 const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
+
 require("dotenv").config();
 
 const authRouter = require("./routes/api/auth");
@@ -14,8 +15,9 @@ const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
+app.use(express.static("public"));
 
-app.use("/api/auth", authRouter)
+app.use("/api/auth", authRouter);
 
 app.use("/api/contacts", contactsRouter);
 
@@ -24,9 +26,6 @@ app.use((req, res) => {
 });
 
 app.use((err, req, res, next) => {
-  res.status(500).json({ message: err.message, stack: err.stack })
-})
+  res.status(500).json({ message: err.message, stack: err.stack });
+});
 module.exports = app;
-
-
-
